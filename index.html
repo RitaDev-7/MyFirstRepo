@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Principia — Science & Mathematics Discovery Hub</title>
+  <meta name="description" content="Explore seminal theories of science, core mathematical concepts, verified research papers, and Nobel laureate breakthroughs. Simplified intuitions and real-world daily life applications.">
+
+  <!-- KaTeX for Mathematical Formula Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Application Controller -->
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+
+  <!-- Sticky Site Navigation Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#" class="brand-logo" onclick="window.location.reload(); return false;">
+        <div class="logo-symbol">𝛑</div>
+        <div>
+          <span>PRINCIPIA</span>
+          <span class="brand-subtitle">Science & Math Discovery</span>
+        </div>
+      </a>
+
+      <nav class="nav-tabs" aria-label="Main Navigation">
+        <button type="button" class="nav-tab-btn active" data-nav-tab="discover">
+          <span>🔭</span> <span class="nav-text">Discover</span>
+        </button>
+        <button type="button" class="nav-tab-btn" data-nav-tab="scientists">
+          <span>🏅</span> <span class="nav-text">Scientists & Nobel</span>
+        </button>
+        <button type="button" class="nav-tab-btn" data-nav-tab="papers">
+          <span>📜</span> <span class="nav-text">Live Research</span>
+        </button>
+        <button type="button" class="nav-tab-btn" data-nav-tab="timeline">
+          <span>⏳</span> <span class="nav-text">Timeline</span>
+        </button>
+        <button type="button" class="nav-tab-btn" data-nav-tab="quiz">
+          <span>🧠</span> <span class="nav-text">Quiz Challenge</span>
+        </button>
+      </nav>
+
+      <div class="header-actions">
+        <div class="header-score-pill" id="header-quiz-score" title="Your Quiz Points">
+          🌱 <strong>0</strong> pts
+        </div>
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" title="Toggle Light/Dark Theme">
+          <span>☀️</span> <span class="nav-text">Light</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- TAB 1: DISCOVER CONCEPTS & THEORIES -->
+    <section class="tab-section" id="tab-discover">
+      <!-- Hero Banner -->
+      <section class="hero-section">
+        <div class="container">
+          <div class="hero-pill">
+            <span>✨</span> Verified Peer-Reviewed Archives • Nobel Breakthroughs • Pure Mathematics
+          </div>
+          <h1 class="hero-title">
+            Explore the <span class="hero-gradient-text">Architecture of Reality</span>
+          </h1>
+          <p class="hero-description">
+            Deconstruct seminal mathematical proofs, physics theories, and scientific breakthroughs.
+            Experience dual-layer explanations: intuitive everyday analogies paired with mathematical rigor and real-world daily applications.
+          </p>
+
+          <div class="hero-cta-group">
+            <button type="button" class="btn btn-primary" id="hero-explore-btn">
+              Explore Discoveries ↓
+            </button>
+            <button type="button" class="btn btn-outline" id="hero-quiz-btn">
+              Knowledge Challenge 🧠
+            </button>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric-box">
+              <div class="metric-number">100%</div>
+              <div class="metric-label">Verified Sources</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-number">900+</div>
+              <div class="metric-label">Nobel Records</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-number">2.4M+</div>
+              <div class="metric-label">arXiv Papers API</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-number">KaTeX</div>
+              <div class="metric-label">LaTeX Math Engine</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filter & Search Section -->
+      <section class="filter-search-section">
+        <div class="container">
+          <div class="search-input-wrapper">
+            <span class="search-icon-inside">🔍</span>
+            <input type="text" id="global-search" class="main-search-input" placeholder="Search concepts, equations (Euler, Fourier, Relativity, Entropy, CRISPR)..." autocomplete="off">
+          </div>
+
+          <div class="category-filter-bar">
+            <button type="button" class="category-chip active" data-category="all">All Topics</button>
+            <button type="button" class="category-chip" data-category="mathematics">Pure & Applied Math</button>
+            <button type="button" class="category-chip" data-category="physics">Physics & Spacetime</button>
+            <button type="button" class="category-chip" data-category="biology">Biology & Genetics</button>
+            <button type="button" class="category-chip" data-category="computing">Computing & AI</button>
+            <button type="button" class="category-chip" data-category="bookmarks">★ Saved Library</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Discovery Grid -->
+      <section class="concepts-grid-section">
+        <div class="container">
+          <div class="section-subhead-row">
+            <h2>Seminal Discoveries & Mathematical Theorems</h2>
+            <span class="count-indicator" id="concept-count">Loading concepts...</span>
+          </div>
+
+          <div class="cards-grid" id="concepts-grid">
+            <!-- Dynamically populated by app.js -->
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- TAB 2: SCIENTISTS & NOBEL LAUREATES -->
+    <section class="tab-section hidden" id="tab-scientists">
+      <div class="container" style="padding-top: 3rem;">
+        <div class="section-intro-block">
+          <h2>Giants of Science & Nobel Laureates</h2>
+          <p>
+            Honoring the visionaries whose intellectual courage transformed human civilization.
+            Explore curated biographies, seminal papers, or search live official records directly from the Nobel Prize Foundation database.
+          </p>
+        </div>
+
+        <div class="nobel-search-row">
+          <input type="text" id="nobel-search-input" class="nobel-input-field" placeholder="Search live Nobel laureates (e.g. Feynman, Curie, Einstein, Penrose)...">
+          <select id="nobel-category-select" class="nobel-category-select">
+            <option value="">All Disciplines</option>
+            <option value="phy">Physics</option>
+            <option value="che">Chemistry</option>
+            <option value="med">Physiology or Medicine</option>
+          </select>
+          <button type="button" class="btn btn-primary" id="nobel-search-btn">
+            Search Nobel Database
+          </button>
+        </div>
+
+        <div class="api-status-banner hidden" id="live-nobel-results"></div>
+
+        <div class="scientists-grid" id="scientists-grid">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: LIVE ARXIV RESEARCH PAPERS -->
+    <section class="tab-section hidden" id="tab-papers">
+      <div class="container" style="padding-top: 3rem;">
+        <div class="section-intro-block">
+          <h2>Live Academic Research Explorer</h2>
+          <p>
+            Direct live integration with the open <strong>arXiv e-Print archive</strong>.
+            Search millions of contemporary and foundational research papers in mathematics, quantum physics, machine learning, and quantitative sciences.
+          </p>
+        </div>
+
+        <div class="nobel-search-row">
+          <input type="text" id="arxiv-search-input" class="nobel-input-field" placeholder="Search research papers (e.g. Riemann Hypothesis, Quantum Teleportation, Neural Networks)..." value="Quantum Computing">
+          <button type="button" class="btn btn-primary" id="arxiv-search-btn">
+            Query arXiv API
+          </button>
+        </div>
+
+        <div class="arxiv-query-chips-bar">
+          <span class="chip-label">Trending Topics:</span>
+          <button type="button" class="paper-query-chip" data-query="Quantum Computing">Quantum Computing</button>
+          <button type="button" class="paper-query-chip" data-query="Differential Geometry">Differential Geometry</button>
+          <button type="button" class="paper-query-chip" data-query="Deep Learning Optimization">Deep Learning Optimization</button>
+          <button type="button" class="paper-query-chip" data-query="Prime Number Distribution">Prime Numbers</button>
+          <button type="button" class="paper-query-chip" data-query="CRISPR Gene Editing">CRISPR</button>
+          <button type="button" class="paper-query-chip" data-query="Gravitational Waves">Gravitational Waves</button>
+        </div>
+
+        <div id="papers-loading" class="api-status-banner hidden">
+          <div class="spinner"></div> Querying arXiv open research repository...
+        </div>
+
+        <div class="cards-grid" id="papers-grid">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: CHRONOLOGICAL DISCOVERY TIMELINE -->
+    <section class="tab-section hidden" id="tab-timeline">
+      <div class="container" style="padding-top: 3rem;">
+        <div class="section-intro-block">
+          <h2>The Chronology of Human Discovery</h2>
+          <p>
+            Trace the evolutionary arc of human thought from ancient axiomatic geometry to modern quantum computing and mRNA medicine.
+          </p>
+        </div>
+
+        <div id="timeline-container">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: QUIZ MASTER CHALLENGE -->
+    <section class="tab-section hidden" id="tab-quiz">
+      <div class="container" style="padding-top: 3rem;">
+        <div class="section-intro-block">
+          <h2>Principia Knowledge Master Challenge</h2>
+          <p>
+            Reinforce your scientific intuition. Complete concept-specific micro-quizzes, build your answer streak, and test your understanding of how deep theory shapes everyday life.
+          </p>
+        </div>
+
+        <div class="quiz-dashboard-hero">
+          <div class="quiz-dash-stat">
+            <div class="quiz-dash-val" id="quiz-score-badge">0 pts</div>
+            <div class="quiz-dash-label">Knowledge Score</div>
+          </div>
+          <div class="quiz-dash-stat">
+            <div class="quiz-dash-val" id="quiz-rank-title">🌱 Apprentice Thinker</div>
+            <div class="quiz-dash-label">Current Mastery Rank</div>
+          </div>
+          <div class="quiz-dash-stat">
+            <div class="quiz-dash-val" id="quiz-streak">0 in a row</div>
+            <div class="quiz-dash-label">Accuracy Streak</div>
+          </div>
+        </div>
+
+        <div id="quiz-challenge-container">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CONCEPT DETAIL & DUAL-EXPLANATION MODAL -->
+  <div class="modal-overlay hidden" id="concept-modal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">×</button>
+      <div class="modal-body" id="modal-body">
+        <!-- Dynamically populated by openConceptModal() in app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p><strong>PRINCIPIA</strong> — Science & Mathematics Discovery Hub</p>
+      <p class="footer-sub">Curated from verified academic archives: Nobel Foundation • arXiv.org • Royal Society • Annalen der Physik • Nature</p>
+    </div>
+  </footer>
+
+</body>
+</html>
